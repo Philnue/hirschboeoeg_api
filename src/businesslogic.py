@@ -8,7 +8,7 @@ class BusinesssLogic():
     
     def __init__(self):
         try:
-            self.con = sqlite3.connect("../../Database/hirschboeoeg.db")
+            self.con = sqlite3.connect("../Database/hirschboeoeg.db")
             self.cur = self.con.cursor()
             print("Database connection: connected")
         except Exception as e:
