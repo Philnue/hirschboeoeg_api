@@ -33,6 +33,12 @@ async def get_all_items():
 async def addTerminAbstimmung(termin_id, mitglied_id, entscheidung):
     return con.add_termin_abstimmung(termin_id, mitglied_id, entscheidung)
 
+@api.get("/loadallterminabstimmung/")
+async def get_all_termin_abstimmung():
+    values = con.getAllTerminAbstimmung()
+    #command
+    return values
+
 @api.get("/addperson/{vorname},{nachname}")
 async def create_item(vorname, nachname):
     
