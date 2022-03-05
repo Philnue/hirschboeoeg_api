@@ -1,0 +1,6 @@
+uvicorn main:api --reload
+
+
+http://127.0.0.1:8000/loadalltermine/
+
+uvicorn main:api --host 0.0.0.0 --port 7777
