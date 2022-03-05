@@ -4,8 +4,9 @@ import csv
 
 
 #res = requests.get("http://192.168.178.67:7777/loadallmitglieder/")
-res = requests.get("http://127.0.0.1:8000/loadalltermine/")
-#res2 = requests.get("http://192.168.178.67:7777/loadpersonbyid/3")
+#res = requests.get("http://192.168.178.67:7777/loadalltermine/")
+res = requests.get("http://192.168.178.67:7777/addTerminAbstimmung/1,1,false")
+#res2 = requests.get("http://192.168.178.67:7777/loadpersonbyid/3")   /addTerminAbstimmung/{termin_id},{mitglied_id},{entscheidung}
 
 #t2 = res2.json()
 

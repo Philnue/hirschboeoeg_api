@@ -13,13 +13,18 @@ class BusinesssLogic():
             print("Database connection: connected")
         except Exception as e:
             print("Database connection: Error connecting: " + str(e.args))
+   
 
-    def get_item_by_id(self, id):
+    def add_termin_abstimmung(self, termin_id, mitglied_id, entscheidung):
         try:
-            command = "SELECT * FROM Personen where id == ?"
-            self.execute_command_tuple(command, (id,))
-            p = self.cur.fetchone()
-            return p
+            command = "INSERT INTO TerminAbstimmung (termin_id, entscheidung, mitglieder_id) VALUES (?,?,?)"
+            self.execute_command_tuple(command, (termin_id,entscheidung, mitglied_id))
+            self.commit_changes()
+            return f"Added Person: {termin_id} {entscheidung} {mitglied_id}"
+
+    
+
+
         except Exception as e:
             print("Database connection: Error getting item by id" + str(e))
 
