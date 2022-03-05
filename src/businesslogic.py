@@ -21,10 +21,6 @@ class BusinesssLogic():
             self.execute_command_tuple(command, (termin_id,entscheidung, mitglied_id))
             self.commit_changes()
             return f"Added Person: {termin_id} {entscheidung} {mitglied_id}"
-
-    
-
-
         except Exception as e:
             print("Database connection: Error getting item by id" + str(e))
 
@@ -108,3 +104,19 @@ class BusinesssLogic():
 
     def print_database_error(self,command, error_message = "Database connection", ):
         return (error_message + str(command))
+
+    def getAllTerminAbstimmung(self):
+
+        try:
+            command = "SELECT * FROM TerminAbstimmung"
+            self.execute_command(command)
+            s = []
+
+            for item in self.cur.fetchall():
+                d = {"id": item[0], "mitgliedid" : item[1], "terminId" : item[2],"entscheidung" : item[3]}
+                s.append(d)
+
+            return s
+
+        except Exception as d:
+            print("Error getting all entries: " + str(d.args))
