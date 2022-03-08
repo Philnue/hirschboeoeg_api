@@ -50,6 +50,7 @@ class BusinesssLogic():
 
             for item in self.cur.fetchall():
                 d = {"id": item[0], "name" : item[1], "datum" : item[2],"adresse" : item[3],"uhrzeit" : item[4],"notizen" : item[5],"treffpunkt" : item[6],"kleidung" : item[7]}
+                
                 s.append(d)
 
             return s
@@ -63,7 +64,7 @@ class BusinesssLogic():
             command = f"SELECT termin.id, termin.name, datum,adresse,uhrzeit,notizen,treffpunkt,Kleidung.name FROM Termin, Kleidung WHERE Kleidung.id == kleidung_id AND datum >= '{calcDate}' ORDER BY datum, uhrzeit"
             self.execute_command(command)
             s = []
-
+            
             for item in self.cur.fetchall():
                 d = {"id": item[0], "name" : item[1], "datum" : item[2],"adresse" : item[3],"uhrzeit" : item[4],"notizen" : item[5],"treffpunkt" : item[6],"kleidung" : item[7]}
                 s.append(d)
