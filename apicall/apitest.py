@@ -2,13 +2,6 @@
 import requests
 import csv
 
-
-
-ttt = "äühaslhkdfashdfa"
-print(ttt)
-
-
-
 #res = requests.get("http://192.168.178.67:7777/loadallmitglieder/")
 res = requests.get("http://192.168.178.67:7777/loadalltermine/")
 #res = requests.get("http://192.168.178.67:7777/loadallterminabstimmung")
