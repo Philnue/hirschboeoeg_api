@@ -37,6 +37,12 @@ async def get_all_termin_abstimmung():
     #command
     return values
 
+@api.get("/TerminAbstimmung/loadterminabstimmungbyterminidandmitgliedid/{mitgliedId},{terminId}")
+async def get_all_termin_abstimmung(mitgliedId,terminId):
+    values = con.getTerminAbstimmungByMitgliedIdAndTerminId(mitgliedId,terminId)
+    #command
+    return values
+
 
 
 #Mitglieder

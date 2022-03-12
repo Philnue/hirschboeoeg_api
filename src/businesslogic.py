@@ -56,6 +56,22 @@ class BusinesssLogic():
         except Exception as d:
             print("Error getting all entries: " + str(d.args))
 
+    def getTerminAbstimmungByMitgliedIdAndTerminId(self, mitgliedId, terminId):
+
+        try:
+            command = "SELECT entscheidung FROM TerminAbstimmung WHERE termin_id == ? AND mitglieder_id == ?"
+            self.execute_command_tuple(command, (terminId, mitgliedId))
+            s = []
+
+            for item in self.cur.fetchall():
+                d = {"entscheidung": item[0]}
+                s.append(d)
+
+            return s
+
+        except Exception as d:
+            print("Error getting all entries: " + str(d.args))
+
     
     
     
