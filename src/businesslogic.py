@@ -1,3 +1,4 @@
+from operator import truediv
 import sqlite3
 from sqlite3 import Error
 from tkinter import E
@@ -71,6 +72,20 @@ class BusinesssLogic():
 
         except Exception as d:
             print("Error getting all entries: " + str(d.args))
+
+    def updateTerminAbstimmungByMitgliedIdAndTerminId(self, mitgliedId, terminId, entscheidung):
+
+        try:
+            command = "UPDATE TerminAbstimmung SET entscheidung = ? WHERE termin_id == ? AND mitglieder_id == ?"
+            self.execute_command_tuple(command, (entscheidung, terminId, mitgliedId))
+            self.commit_changes()
+
+
+            return "true"
+
+        except Exception as d:
+            print("Error getting all entries: " + str(d.args))
+            return "false"
 
     
     
