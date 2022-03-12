@@ -19,6 +19,7 @@ class BusinesssLogic():
     def add_termin_abstimmung(self, termin_id, mitglied_id, entscheidung):
         try:
             command = "INSERT INTO TerminAbstimmung (termin_id, entscheidung, mitglieder_id) VALUES (?,?,?)"
+            print(command)
             self.execute_command_tuple(command, (termin_id,entscheidung, mitglied_id))
             self.commit_changes()
             return f"Added Termin abstimmung: {termin_id} {entscheidung} {mitglied_id}"
@@ -42,12 +43,12 @@ class BusinesssLogic():
     def getAllTerminAbstimmung(self):
 
         try:
-            command = "SELECT * FROM TerminAbstimmung"
+            command = "SELECT id, mitglieder_id, termin_id, entscheidung FROM TerminAbstimmung"
             self.execute_command(command)
             s = []
 
             for item in self.cur.fetchall():
-                d = {"id": item[0], "mitgliedid" : item[1], "terminId" : item[2],"entscheidung" : item[3]}
+                d = {"id": item[0], "mitglieder_id" : item[1], "termin_id" : item[2],"entscheidung" : item[3]}
                 s.append(d)
 
             return s
