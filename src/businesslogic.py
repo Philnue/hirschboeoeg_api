@@ -21,7 +21,7 @@ class BusinesssLogic():
             command = "INSERT INTO TerminAbstimmung (termin_id, entscheidung, mitglieder_id) VALUES (?,?,?)"
             self.execute_command_tuple(command, (termin_id,entscheidung, mitglied_id))
             self.commit_changes()
-            return f"Added Person: {termin_id} {entscheidung} {mitglied_id}"
+            return f"Added Termin abstimmung: {termin_id} {entscheidung} {mitglied_id}"
         except Exception as e:
             print("Database connection: Error getting item by id" + str(e))
 
