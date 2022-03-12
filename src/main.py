@@ -54,7 +54,7 @@ async def get_all_itemsTT():
     values = conMitglieder._getAllMitglieder()
     return values
 
-@api.get("/Mitglieder/updatemitgliedwithid/{vorname},{nachname}")
-async def get_all_itemsTTT(vorname,nachname):
-    values = conMitglieder._updateMitgliedWithId(vorname,nachname)
+@api.get("/Mitglieder/updatemitgliedwithid/{id},{vorname},{nachname}")
+async def get_all_itemsTTT(id,vorname,nachname):
+    values = conMitglieder._updateMitgliedWithId(id,vorname,nachname)
     return values
