@@ -27,6 +27,23 @@ class BusinesssLogic():
         except Exception as e:
             print("Database connection: Error getting item by id" + str(e))
 
+    def load_all_termin_zusagen_by_terminid(self, termin_id):
+        try:
+
+            command = "SELECT Mitglieder.vorname, Mitglieder.nachname FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.id AND Termin.id == ?"
+
+            self.execute_command_tuple(command,(termin_id,))
+            s = []
+
+            for item in self.cur.fetchall():
+                d = {"vorname": item[0], "nachname" : item[1]}
+                s.append(d)
+
+            return s
+        except Exception as e:
+            print("Database connection: Error getting item by id" + str(e))
+
+
    
 
     def execute_command(self,command):
