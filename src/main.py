@@ -31,6 +31,10 @@ async def get_all_items():
 async def addTerminAbstimmung(termin_id, mitglied_id, entscheidung):
     return con.add_termin_abstimmung(termin_id, mitglied_id, entscheidung)
 
+@api.get("/TerminAbstimmung/loadAllTerminZusagenByTerminId/{termin_id}")
+async def addTerminAbstimmung(termin_id):
+    return con.load_all_termin_zusagen_by_terminid(termin_id)
+
 @api.get("/TerminAbstimmung/loadallterminabstimmung/")
 async def get_all_termin_abstimmung():
     values = con.getAllTerminAbstimmung()
