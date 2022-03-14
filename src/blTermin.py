@@ -9,7 +9,7 @@ class BlTermin (BusinesssLogic):
 
     def getAllTermineSorted(self):
         try:
-            print("in blTermin")
+           
             calcDate = str(datetime.today())[0:10]
             command = f"SELECT termin.id, termin.name, datum,adresse,uhrzeit,notizen,treffpunkt,Kleidung.name FROM Termin, Kleidung WHERE Kleidung.id == kleidung_id AND datum >= '{calcDate}' ORDER BY datum, uhrzeit"
             self.execute_command(command)

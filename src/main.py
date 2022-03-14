@@ -23,7 +23,7 @@ async def root():
 
 @api.get("/Termine/loadalltermine/")
 async def get_all_items():
-    print("Aufgruf")
+   
     values = conTermine.getAllTermineSorted()
     return values
 
@@ -40,6 +40,18 @@ async def get_all_termin_abstimmung():
 @api.get("/TerminAbstimmung/loadterminabstimmungbyterminidandmitgliedid/{mitgliedId},{terminId}")
 async def get_all_termin_abstimmung(mitgliedId,terminId):
     values = con.getTerminAbstimmungByMitgliedIdAndTerminId(mitgliedId,terminId)
+    #command
+    return values
+
+@api.get("/TerminAbstimmung/deleteterminabstimmung/{mitgliedId},{terminId}")
+async def get_all_termin_abstimmung(mitgliedId,terminId):
+    values = con.deleteTerminAbstimmungByMitgliedAndTermin(mitgliedId,terminId)
+    #command
+    return values
+
+@api.get("/TerminAbstimmung/updateterminabstimmungbyterminidandmitgliedid/{mitgliedId},{terminId},{entscheidung}")
+async def get_all_termin_abstimmung(mitgliedId,terminId, entscheidung):
+    values = con.updateTerminAbstimmungByMitgliedIdAndTerminId(mitgliedId,terminId,entscheidung)
     #command
     return values
 

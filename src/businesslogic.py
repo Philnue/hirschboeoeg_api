@@ -63,8 +63,8 @@ class BusinesssLogic():
         try:
             command = "DELETE FROM TerminAbstimmung WHERE termin_id == ? AND mitglieder_id == ?"
             self.execute_command_tuple(command, (terminId, mitgliedId))
+            print(command)
             self.commit_changes()
-            s = []
 
            
             return f"Deleted item with MG {mitgliedId} Termin {terminId}"
