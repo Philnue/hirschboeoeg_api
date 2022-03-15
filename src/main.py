@@ -71,6 +71,10 @@ async def get_all_termin_abstimmung(mitgliedId,terminId, entscheidung):
 async def create_item(vorname, nachname):
     return conMitglieder._getMitgliederIdByName(vorname, nachname)
 
+@api.get("/Mitglieder/getFullMitgliedById/{id}")
+async def create_item(id):
+    return conMitglieder._getMitgliedById(id)
+
 @api.get("/Mitglieder/addMitglied/{vorname},{nachname}")
 async def create_itemT(vorname, nachname):
     return conMitglieder._addMitgliedWithoutGeburtstag(vorname, nachname)

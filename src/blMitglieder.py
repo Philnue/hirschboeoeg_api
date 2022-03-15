@@ -64,3 +64,18 @@ class BlMitglieder (BusinesssLogic):
 
         except Exception as e:
             print(str(e.args))
+
+    def _getMitgliedById(self, id):
+        try: 
+            command = "SELECT id, vorname, nachname, geburtstag FROM Mitglieder WHERE id == ?"
+            self.execute_command_tuple(command, (id,))
+            self.commit_changes()
+            s = []
+
+            for item in self.cur.fetchall():
+                d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"geb" : item[3]}
+                s.append(d)
+            return s
+
+        except Exception as e:
+            print(str(e.args))
