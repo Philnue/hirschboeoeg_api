@@ -6,6 +6,8 @@ from fastapi import FastAPI
 import businesslogic as dbConnection
 import blTermin as dbConnectionTermine
 import blMitglieder as dbConnectionMitglieder
+import blAbstimmung as dbAbstimmungen
+import blAbstimmungsStimme as dbAbstimmungsStimme
 import json
 
 #   in src wechseln zum starate 
@@ -15,6 +17,8 @@ api = FastAPI()
 con = dbConnection.BusinesssLogic()
 conTermine = dbConnectionTermine.BlTermin()
 conMitglieder = dbConnectionMitglieder.BlMitglieder()
+conAbstimmungen = dbAbstimmungen.BlAbstimmung()
+conAbstimmungsStimme = dbAbstimmungsStimme.BlAbstimmungsStimme()
 
 @api.get("/")
 async def root():
@@ -80,3 +84,23 @@ async def get_all_itemsTT():
 async def get_all_itemsTTT(id,vorname,nachname):
     values = conMitglieder._updateMitgliedWithId(id,vorname,nachname)
     return values
+
+# Abstimmung
+
+@api.get("/Abstimmung/getAllAbstimmungen/")
+async def get_all_abstimmungen():
+    return conAbstimmungen._getAllAbstimmungen()
+
+@api.get("/Abstimmung/deleteAbstimmungById/{id}")
+async def get_all_abstimmungen(id):
+    return conAbstimmungen._deleteAbstimmungById(id)
+
+@api.get("/Abstimmung/addAbstimmung/{mitglied_id},{frage}")
+async def get_all_abstimmungen(mitglied_id, frage):
+    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage)
+
+#AbstimmungsStimme
+
+@api.get("/AbstimmungsStimme/addAbstimmungsStimme/{mitglied_id},{abstimmungs_id},{entscheidung}")
+async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
+    return conAbstimmungsStimme._addAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
