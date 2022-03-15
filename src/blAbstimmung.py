@@ -11,12 +11,12 @@ class BlAbstimmung (BusinesssLogic):
 
     def _getAllAbstimmungen(self):
         try:
-            command = "SELECT id, mitglied_id, erstellungsDatum, frage FROM Abstimmung"
+            command = "SELECT id, mitglied_id, erstellungsDatum, erstellungsUhrzeit, frage FROM Abstimmung"
             self.execute_command(command)
             s = []
 
             for item in self.cur.fetchall():
-                d = {"id": item[0], "mitglied_id" : item[1], "erstellungsDatum" : item[2],"frage" : item[3]}
+                d = {"id": item[0], "mitglied_id" : item[1], "erstellungsDatum" : item[2],"erstellungsUhrzeit" : item[3],"frage" : item[4] }
                 s.append(d)
 
             return s
