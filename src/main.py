@@ -99,9 +99,9 @@ async def get_all_abstimmungen():
 async def get_all_abstimmungen(id):
     return conAbstimmungen._deleteAbstimmungById(id)
 
-@api.get("/Abstimmung/addAbstimmung/{mitglied_id},{frage}")
-async def get_all_abstimmungen(mitglied_id, frage):
-    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage)
+@api.get("/Abstimmung/addAbstimmung/{mitglied_id},{frage},{title}")
+async def get_all_abstimmungen(mitglied_id, frage,title):
+    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage,title)
 
 #AbstimmungsStimme
 
