@@ -101,7 +101,7 @@ async def get_all_abstimmungen(id):
 
 @api.get("/Abstimmung/addAbstimmung/{mitglied_id},{frage},{title}")
 async def get_all_abstimmungen( mitglied_id, frage,title):
-    return conAbstimmungen._addTerminAbstimmung(mitglied_id= mitglied_id, frage= frage, title= title)
+    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage, title)
 
 #AbstimmungsStimme
 

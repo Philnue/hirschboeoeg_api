@@ -42,10 +42,10 @@ class BlAbstimmung (BusinesssLogic):
             print("Error getting all Abstimmungen: " + str(d.args))
             return False
 
-    def _addTerminAbstimmung(self, mitglied_id, frage):
+    def _addTerminAbstimmung(self, mitglied_id, frage, title):
         try:
-            command = "INSERT INTO Abstimmung (mitglied_id, erstellungsDatum, erstellungsUhrzeit,frage) VALUES (?, DATE('now'), TIME('now'), ?)"
-            self.execute_command_tuple(command, (mitglied_id,frage))
+            command = "INSERT INTO Abstimmung (mitglied_id, erstellungsDatum, erstellungsUhrzeit,frage, title) VALUES (?, DATE('now'), TIME('now'), ?, ?)"
+            self.execute_command_tuple(command, (mitglied_id,frage, title))
             self.commit_changes()
 
             return True
