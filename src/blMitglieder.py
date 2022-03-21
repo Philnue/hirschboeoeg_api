@@ -47,10 +47,11 @@ class BlMitglieder (BusinesssLogic):
             self.commit_changes()
 
             
-            return "true"
+            return True
 
         except Exception as e:
             print(str(e.args))
+            return False
 
 
     def _addMitgliedWithoutGeburtstag(self, vorname, nachname):
@@ -60,10 +61,11 @@ class BlMitglieder (BusinesssLogic):
             self.commit_changes()
 
             
-            return "true"
+            return True
 
         except Exception as e:
             print(str(e.args))
+            return False
 
     def _getMitgliedById(self, id):
         try: 

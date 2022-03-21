@@ -2,6 +2,7 @@ from operator import truediv
 import sqlite3
 from sqlite3 import Error
 from tkinter import E
+from xml.etree.ElementTree import TreeBuilder
 from xmlrpc.client import DateTime
 from helper.mitlied import Mitglied
 from datetime import date, datetime
@@ -15,6 +16,7 @@ class BusinesssLogic():
             print("Database connection: connected")
         except Exception as e:
             print("Database connection: Error connecting: " + str(e.args))
+            return False
    
 
     def add_termin_abstimmung(self, termin_id, mitglied_id, entscheidung):
@@ -23,9 +25,11 @@ class BusinesssLogic():
             print(command)
             self.execute_command_tuple(command, (termin_id,entscheidung, mitglied_id))
             self.commit_changes()
-            return f"Added Termin abstimmung: {termin_id} {entscheidung} {mitglied_id}"
+            print("Added Termin abstimmung: {termin_id} {entscheidung} {mitglied_id}")
+            return True
         except Exception as e:
             print("Database connection: Error getting item by id" + str(e))
+            return False
 
     def load_all_termin_zusagen_by_terminid(self, termin_id):
         try:
@@ -42,6 +46,7 @@ class BusinesssLogic():
             return s
         except Exception as e:
             print("Database connection: Error getting item by id" + str(e))
+            return False
 
 
    
@@ -73,6 +78,7 @@ class BusinesssLogic():
 
         except Exception as d:
             print("Error getting all entries: " + str(d.args))
+            return False
 
 
     def deleteTerminAbstimmungByMitgliedAndTermin(self, mitgliedId, terminId):
@@ -84,10 +90,12 @@ class BusinesssLogic():
             self.commit_changes()
 
            
-            return f"Deleted item with MG {mitgliedId} Termin {terminId}"
+            print("Deleted item with MG {mitgliedId} Termin {terminId}")
+            return True
 
         except Exception as d:
             print("Error getting all entries: " + str(d.args))
+            return False
 
     def getTerminAbstimmungByMitgliedIdAndTerminId(self, mitgliedId, terminId):
 
@@ -104,6 +112,7 @@ class BusinesssLogic():
 
         except Exception as d:
             print("Error getting all entries: " + str(d.args))
+            return False
 
     def updateTerminAbstimmungByMitgliedIdAndTerminId(self, mitgliedId, terminId, entscheidung):
 
@@ -113,11 +122,11 @@ class BusinesssLogic():
             self.commit_changes()
 
 
-            return "true"
+            return True
 
         except Exception as d:
             print("Error getting all entries: " + str(d.args))
-            return "false"
+            return False
 
     
     
