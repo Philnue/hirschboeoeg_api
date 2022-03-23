@@ -103,20 +103,20 @@ async def get_all_abstimmungen(id):
 async def get_all_abstimmungen( mitglied_id, frage,title):
     return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage, title)
 
+@api.get("/Abstimmung/addAbstimmung/{mitglied_id}/{frage}/{title}")
+async def get_all_abstimmungen( mitglied_id, frage,title):
+    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage, title)
+    
+@api.get("/Abstimmung/addAbstimmung/{mitglied_id}//{frage}//{title}")
+async def get_all_abstimmungen( mitglied_id, frage,title):
+    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage, title)
+
+@api.get("/Abstimmung/addAbstimmung/{mitglied_id};{frage};{title}")
+async def get_all_abstimmungen( mitglied_id, frage,title):
+    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage, title)
+
 #AbstimmungsStimme
 
 @api.get("/AbstimmungsStimme/addAbstimmungsStimme/{mitglied_id},{abstimmungs_id},{entscheidung}")
-async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
-    return conAbstimmungsStimme._addAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
-
-@api.get("/AbstimmungsStimme/addAbstimmungsStimme/{mitglied_id}/{abstimmungs_id}/{entscheidung}")
-async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
-    return conAbstimmungsStimme._addAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
-
-@api.get("/AbstimmungsStimme/addAbstimmungsStimme/{mitglied_id}//{abstimmungs_id}//{entscheidung}")
-async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
-    return conAbstimmungsStimme._addAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
-
-@api.get("/AbstimmungsStimme/addAbstimmungsStimme/{mitglied_id};{abstimmungs_id};{entscheidung}")
 async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
     return conAbstimmungsStimme._addAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
