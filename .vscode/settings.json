@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "HB",
+            "database": "${workspaceFolder:hirschboeoeg_api}/Database/hirschboeoeg.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
