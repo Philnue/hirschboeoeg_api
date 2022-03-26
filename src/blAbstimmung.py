@@ -14,7 +14,7 @@ class BlAbstimmung (BusinesssLogic):
             #command = "SELECT id, mitglied_id, erstellungsDatum, erstellungsUhrzeit, frage FROM Abstimmung"
 
             #command = "SELECT * FROM Abstimmung"
-            command = "SELECT Abstimmung.id, Abstimmung.mitglied_id,vorname, nachname, geburtsdatum, erstellungsDatum, erstellungsUhrzeit, frage, titel FROM Abstimmung, Mitglieder WHERE Mitglieder.id == Abstimmung.mitglied_id"
+            command = "SELECT Abstimmung.id, Abstimmung.mitglied_id,vorname, nachname, geburtsdatum, erstellungsDatum, erstellungsUhrzeit, frage, titel, ablaufDatum FROM Abstimmung, Mitglieder WHERE Mitglieder.id == Abstimmung.mitglied_id ORDER BY erstellungsDatum"
             self.execute_command(command)
             
             s = []
@@ -22,7 +22,7 @@ class BlAbstimmung (BusinesssLogic):
             for item in self.cur.fetchall():
                
                 #d = {"id": item[0], "mitglied_id" : item[1], "erstellungsDatum" : item[2],"erstellungsUhrzeit" : item[3],"frage" : item[4] }
-                d = {"Abstimmung.id": item[0], "mitglied_id" : item[1], "vorname" : item[2],"nachname" : item[3],"geburtsdatum" : item[4], "erstellungsDatum" : item[5], "erstellungsUhrzeit" : item[6], "frage" : item[7] , "titel" : item[8]}
+                d = {"Abstimmung.id": item[0], "mitglied_id" : item[1], "vorname" : item[2],"nachname" : item[3],"geburtsdatum" : item[4], "erstellungsDatum" : item[5], "erstellungsUhrzeit" : item[6], "frage" : item[7] , "titel" : item[8], "ablaufDatum" : item[9]}
                 s.append(d)
 
             return s
