@@ -34,13 +34,13 @@ class BusinesssLogic():
     def load_all_termin_zusagen_by_terminid(self, termin_id):
         try:
 
-            command = "SELECT Mitglieder.vorname, Mitglieder.nachname FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.mitglieder_id AND TerminAbstimmung.termin_id == ?"
+            command = "SELECT Mitglieder.id, Mitglieder.vorname, Mitglieder.nachname FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.mitglieder_id AND TerminAbstimmung.termin_id == ?"
 
             self.execute_command_tuple(command,(termin_id,))
             s = []
 
             for item in self.cur.fetchall():
-                d = {"vorname": item[0], "nachname" : item[1]}
+                d = {"id": item[0],"vorname": item[1], "nachname" : item[2]}
                 s.append(d)
 
             return s
