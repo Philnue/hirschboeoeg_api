@@ -61,8 +61,9 @@ class BlMitglieder (BusinesssLogic):
             self.commit_changes()
 
             
-            
-            return self._getMitgliederIdByName(vorname, nachname)
+            t = self._getMitgliederIdByName(vorname, nachname)
+            print(t)
+            return t
 
         except Exception as e:
             print(str(e.args))
