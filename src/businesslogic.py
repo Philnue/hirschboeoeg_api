@@ -134,6 +134,7 @@ class BusinesssLogic():
         try:
             command = "SELECT id, license, amount FROM Lizenz WHERE license == ?"
             self.execute_command_tuple(command, (license))
+            print(self.cur.fetchall())
             s = []
             verified = False
 
