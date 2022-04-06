@@ -134,12 +134,13 @@ class BusinesssLogic():
         try:
             command = "SELECT id, license, amount FROM Lizenz WHERE license == ?"
             self.execute_command_tuple(command, (license))
-            print(self.cur.fetchall())
+            
             s = []
             verified = False
 
             for item in self.cur.fetchall():
                 d = {"id": item[0], "license" : item[1], "amount": item[2]}
+                print(d)
                 if item[1] > 0:
                     verified = True
                     new_amount = item[2] - 1
