@@ -130,6 +130,27 @@ class BusinesssLogic():
 
     
     
-    
+    def verifiyLicense(self, license):
+        try:
+            command = "SELECT id, license, amount FROM Lizenz WHERE license == ?"
+            self.execute_command_tuple(command, (license))
+            s = []
+            verified = False
+
+            for item in self.cur.fetchall():
+                d = {"id": item[0], "license" : item[1], "amount": item[2]}
+                if item[1] > 0:
+                    verified = True
+                    new_amount = item[2] - 1
+                    command = "UPDATE Lizenz SET amount = ? WHERE id == ?"
+                    self.execute_command_tuple(command, (new_amount, item[0]))
+                    self.commit_changes()
+                    
+                
+            return verified
+
+        except Exception as d:
+            print("Error getting license: " + str(d.args))
+            return False
 
     

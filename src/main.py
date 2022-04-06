@@ -112,3 +112,9 @@ async def get_all_abstimmungen( mitglied_id, frage,title,ablaufDatum):
 @api.get("/AbstimmungsStimme/addAbstimmungsStimme/{mitglied_id},{abstimmungs_id},{entscheidung}")
 async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
     return conAbstimmungsStimme._addAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
+
+#lizenz
+
+@api.get("/Lizens/verifylicense/{license}")
+async def get_all_abstimmungen(license):
+    return con.verifiyLicense(license)
