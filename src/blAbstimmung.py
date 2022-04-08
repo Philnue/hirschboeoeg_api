@@ -44,6 +44,10 @@ class BlAbstimmung (BusinesssLogic):
 
     def _addTerminAbstimmung(self, mitglied_id, frage, title, ablaufDatum):
         try:
+
+            print(mitglied_id)
+            print(title)
+            print(frage)
             command = "INSERT INTO Abstimmung (mitglied_id, erstellungsDatum, erstellungsUhrzeit,frage, titel, ablaufDatum) VALUES (?, DATE('now'), TIME('now'), ?, ?, ?)"
             self.execute_command_tuple(command, (mitglied_id,frage, title, ablaufDatum))
             self.commit_changes()
