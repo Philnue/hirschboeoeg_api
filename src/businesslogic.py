@@ -158,7 +158,7 @@ class BusinesssLogic():
 
     def loadAllnews(self):
         try:
-            command = "SELECT id, erstellungsDatum, neuigkeit FROM News ORDER BY erstellungsDatum"
+            command = "SELECT id, erstellungsDatum, neuigkeit FROM News ORDER BY erstellungsDatum DESC"
             self.execute_command(command)
             
             s = []
