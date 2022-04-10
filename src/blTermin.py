@@ -44,7 +44,7 @@ class BlTermin (BusinesssLogic):
     def getTerminById(self, id):
         try:
             command = "SELECT termin.id, termin.name, datum,adresse,uhrzeit,notizen,treffpunkt,Kleidung.name FROM Termin, Kleidung WHERE Kleidung.id == kleidung_id AND termin.id == ?"
-            self.execute_command_tuple(command,(id))
+            self.execute_command_tuple(command,(id,))
             s = []
 
             for item in self.cur.fetchall():
