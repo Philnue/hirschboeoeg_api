@@ -40,3 +40,19 @@ class BlTermin (BusinesssLogic):
 
         except Exception as d:
             print("Error getting all entries: " + str(d.args))
+
+    def getTerminById(self, id):
+        try:
+            command = "SELECT termin.id, termin.name, datum,adresse,uhrzeit,notizen,treffpunkt,Kleidung.name FROM Termin, Kleidung WHERE Kleidung.id == kleidung_id AND termin.id == ?"
+            self.execute_command_tuple(command,(id))
+            s = []
+
+            for item in self.cur.fetchall():
+                d = {"id": item[0], "name" : item[1], "datum" : item[2],"adresse" : item[3],"uhrzeit" : item[4],"notizen" : item[5],"treffpunkt" : item[6],"kleidung" : item[7]}
+                
+                s.append(d)
+
+            return s
+
+        except Exception as d:
+            print("Error getting entrie by id: " + str(d.args))

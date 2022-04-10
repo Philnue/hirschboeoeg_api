@@ -31,6 +31,11 @@ async def get_all_items():
     values = conTermine.getAllTermineSorted()
     return values
 
+@api.get("/Termine/loadTerminById/{termin_id}")
+async def get_all_items(termin_id):
+    return conTermine.getTerminById(termin_id)
+    
+
 @api.get("/TerminAbstimmung/addTerminAbstimmung/{termin_id},{mitglied_id},{entscheidung}")
 async def addTerminAbstimmung(termin_id, mitglied_id, entscheidung):
     return con.add_termin_abstimmung(termin_id, mitglied_id, entscheidung)
