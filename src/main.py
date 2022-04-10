@@ -123,3 +123,9 @@ async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
 @api.get("/Lizens/verifylicense/{license}")
 async def get_all_abstimmungen(license):
     return con.verifiyLicense(license)
+
+# News
+
+@api.get("/Neuigkeiten/loadAllNews/")
+async def get_all_abstimmungen():
+    return con.loadAllnews()

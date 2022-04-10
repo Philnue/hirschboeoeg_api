@@ -156,4 +156,22 @@ class BusinesssLogic():
             print("Error getting license: " + str(d.args))
             return False
 
-    
+    def loadAllnews(self):
+        try:
+            command = "SELECT id, erstellungsDatum, neuigkeit FROM News ORDER BY erstellungsDatum"
+            self.execute_command(command)
+            
+            s = []
+            for item in self.cur.fetchall():
+                d = {"id": item[0], "erstellungsDatum" : item[1], "neuigkeit": item[2]}
+               
+                s.append(d)
+                    
+                
+            return s
+
+        except Exception as d:
+            print("Error getting all News: " + str(d.args))
+            return False
+
+   
