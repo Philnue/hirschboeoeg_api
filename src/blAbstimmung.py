@@ -57,3 +57,33 @@ class BlAbstimmung (BusinesssLogic):
         except Exception as d:
             print("Error getting all Abstimmungen: " + str(d.args))
             return False
+
+    def _loadSummary(self, abstimmung_id):
+        try:
+            #SELECT count(entscheidung), entscheidung FROM AbstimmungStimme, Abstimmung WHERE Abstimmung.id == AbstimmungStimme.abstimmungs_id GROUP BY entscheidung
+         
+            command = "SELECT count(entscheidung), entscheidung FROM AbstimmungStimme, Abstimmung WHERE AbstimmungStimme.abstimmungs_id == ? GROUP BY entscheidung"
+ 
+            self.execute_command_tuple(command, (abstimmung_id,))
+            
+            s = []
+
+            for item in self.cur.fetchall():
+               
+              
+                d = {"count(entscheidung)": item[0], "entscheidung" : item[1]}
+                s.append(d)
+            command2 = "SELECT count(*) FROM Mitglieder"
+
+            self.execute_command(command2)
+            for item in self.cur.fetchall():
+               
+              
+                d = {"registrierteMitglieder": item[0]}
+                s.append(d)
+
+            return s
+
+        except Exception as d:
+            print("Error getting all Abstimmungsstimme: " + str(d.args))
+            return False

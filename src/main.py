@@ -35,7 +35,7 @@ async def get_all_items():
 async def get_all_items(termin_id):
     return conTermine.getTerminById(termin_id)
     
-
+#Update einbauen dass man sieht wer zu und absagt
 @api.get("/TerminAbstimmung/addTerminAbstimmung/{termin_id},{mitglied_id},{entscheidung}")
 async def addTerminAbstimmung(termin_id, mitglied_id, entscheidung):
     return con.add_termin_abstimmung(termin_id, mitglied_id, entscheidung)
@@ -104,6 +104,11 @@ async def get_all_abstimmungen():
 async def get_all_abstimmungen(id):
     return conAbstimmungen._deleteAbstimmungById(id)
 
+
+@api.get("/Abstimmung/summary/{id}")
+async def get_all_abstimmungen(id):
+    return conAbstimmungen._loadSummary(id)
+
 #@api.get("/Abstimmung/addAbstimmung/{mitglied_id},{frage},{title}")
 #async def get_all_abstimmungen( mitglied_id, frage,title):
 #    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage, title)
@@ -117,6 +122,7 @@ async def get_all_abstimmungen( mitglied_id, frage,title,ablaufDatum):
 @api.get("/AbstimmungsStimme/addAbstimmungsStimme/{mitglied_id},{abstimmungs_id},{entscheidung}")
 async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
     return conAbstimmungsStimme._addAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
+
 
 #lizenz
 
