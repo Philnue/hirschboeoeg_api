@@ -62,7 +62,7 @@ class BlAbstimmung (BusinesssLogic):
         try:
             #SELECT count(entscheidung), entscheidung FROM AbstimmungStimme, Abstimmung WHERE Abstimmung.id == AbstimmungStimme.abstimmungs_id GROUP BY entscheidung
          
-            command = "SELECT count(entscheidung), entscheidung FROM AbstimmungStimme, Abstimmung WHERE AbstimmungStimme.abstimmungs_id == ? GROUP BY entscheidung"
+            command = "SELECT count(entscheidung) as anzahl, entscheidung FROM AbstimmungStimme WHERE abstimmungs_id == ? GROUP BY entscheidung"
  
             self.execute_command_tuple(command, (abstimmung_id,))
             
