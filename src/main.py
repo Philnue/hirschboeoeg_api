@@ -109,7 +109,7 @@ async def get_all_itemsTTT(mitglied_id,shortName):
     return values
 
 @api.get("/Mitglieder/deleteShortname/{mitglied_id}")
-async def get_all_itemsTTT(mitglied_id,shortName):
+async def get_all_itemsTTT(mitglied_id):
     values = conMitglieder._deleteShortname(mitglied_id)
     return values
 
