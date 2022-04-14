@@ -1,3 +1,4 @@
+from operator import truediv
 import sqlite3
 from sqlite3 import Error
 from xmlrpc.client import DateTime
@@ -18,7 +19,7 @@ class BlMitglieder (BusinesssLogic):
             s = []
 
             for item in self.cur.fetchall():
-                d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"geb" : item[3]}
+                d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"geburtsdatum" : item[3], "spitzName":item[4]}
                 s.append(d)
 
             return s
@@ -71,15 +72,39 @@ class BlMitglieder (BusinesssLogic):
 
     def _getMitgliedById(self, id):
         try: 
-            command = "SELECT id, vorname, nachname, geburtstag FROM Mitglieder WHERE id == ?"
+            command = "SELECT id, vorname, nachname, geburtstag, spitzName FROM Mitglieder WHERE id == ?"
             self.execute_command_tuple(command, (id,))
             self.commit_changes()
             s = []
 
             for item in self.cur.fetchall():
-                d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"geb" : item[3]}
+                d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"geburtsdatum" : item[3],"spitzName":item[4] }
                 s.append(d)
             return s
 
         except Exception as e:
             print(str(e.args))
+
+    def _addShortName(self, mitglied_id, shortName ):
+        try: 
+            command = "UPDATE Mitglieder SET spitzName = ? WHERE id == ?"
+            self.execute_command_tuple(command, (shortName,mitglied_id))
+            self.commit_changes()
+           
+            return True
+
+        except Exception as e:
+            print(str(e.args))
+            return False
+
+    def _updateShortName(self, mitglied_id, shortName ):
+        try: 
+            command = "UPDATE Mitglieder SET spitzName = ? WHERE id == ?"
+            self.execute_command_tuple(command, (shortName,mitglied_id))
+            self.commit_changes()
+           
+            return True
+
+        except Exception as e:
+            print(str(e.args))
+            return False

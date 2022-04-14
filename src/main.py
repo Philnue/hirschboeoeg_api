@@ -94,6 +94,16 @@ async def get_all_itemsTTT(id,vorname,nachname):
     values = conMitglieder._updateMitgliedWithId(id,vorname,nachname)
     return values
 
+@api.get("/Mitglieder/addShortName/{mitglied_id},{shortName}")
+async def get_all_itemsTTT(mitglied_id,shortName):
+    values = conMitglieder._addShortName(mitglied_id, shortName)
+    return values
+
+@api.get("/Mitglieder/updateShortname/{mitglied_id},{shortName}")
+async def get_all_itemsTTT(mitglied_id,shortName):
+    values = conMitglieder._updateShortName(mitglied_id, shortName)
+    return values
+
 # Abstimmung
 
 @api.get("/Abstimmung/getAllAbstimmungen/")
@@ -109,9 +119,6 @@ async def get_all_abstimmungen(id):
 async def get_all_abstimmungen(id):
     return conAbstimmungen._loadSummary(id)
 
-#@api.get("/Abstimmung/addAbstimmung/{mitglied_id},{frage},{title}")
-#async def get_all_abstimmungen( mitglied_id, frage,title):
-#    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage, title)
 
 @api.get("/Abstimmung/addAbstimmung/{mitglied_id}/{frage}/{title}/{ablaufDatum}")
 async def get_all_abstimmungen( mitglied_id, frage,title,ablaufDatum):

@@ -13,7 +13,7 @@ class BlAbstimmungsStimme (BusinesssLogic):
     def _addAbstimmungsStimme(self,mitglied_id, abstimmungs_id, entscheidung):
         
         try:
-            command = "INSERT INTO Abstimmung (mitglied_id, erstellungsDatum, erstellungsUhrzeit,frage) VALUES (?, DATE('now'), TIME('now'), ?)"
+            command = "INSERT INTO AbstimmungStimme (mitglied_id, stimmenDatum, stimmenUhrzeit,abstimmungs_id, entscheidung) VALUES (?, DATE('now'), TIME('now'), ?, ?)"
             self.execute_command_tuple(command, (mitglied_id,abstimmungs_id, entscheidung))
             self.commit_changes()
 
@@ -22,3 +22,17 @@ class BlAbstimmungsStimme (BusinesssLogic):
         except Exception as d:
             print("Error adding abstimmungsstimme: " + str(d.args))
             return False
+
+    def _addAbstimmungsStimme(self,mitglied_id, abstimmungs_id, entscheidung):
+        
+        try:
+            command = "INSERT INTO AbstimmungStimme (mitglied_id, stimmenDatum, stimmenUhrzeit,abstimmungs_id, entscheidung) VALUES (?, DATE('now'), TIME('now'), ?, ?)"
+            self.execute_command_tuple(command, (mitglied_id,abstimmungs_id, entscheidung))
+            self.commit_changes()
+
+            return True
+
+        except Exception as d:
+            print("Error adding abstimmungsstimme: " + str(d.args))
+            return False
+
