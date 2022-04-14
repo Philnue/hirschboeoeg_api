@@ -41,6 +41,21 @@ class BlMitglieder (BusinesssLogic):
         except Exception as e:
             print(str(e.args))
 
+    def _getFullMitgliedIdByName(self, vorname, nachname):
+        try: 
+            command = "SELECT id, vorname, nachname, geburtsdatum, spitzName FROM Mitglieder WHERE vorname == ? and nachname == ?"
+            self.execute_command_tuple(command, (vorname,nachname))
+            s = []
+
+            for item in self.cur.fetchall():
+               d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"geburtsdatum" : item[3], "spitzName":item[4]}
+               s.append(d)
+
+            return s
+
+        except Exception as e:
+            print(str(e.args))
+
     def _updateMitgliedWithId(self,id, vorname, nachname):
         try: 
             command = "UPDATE Mitglieder SET vorname = ?, nachname = ? WHERE Mitglieder.id == ?"
@@ -72,7 +87,7 @@ class BlMitglieder (BusinesssLogic):
 
     def _getMitgliedById(self, id):
         try: 
-            command = "SELECT id, vorname, nachname, geburtstag, spitzName FROM Mitglieder WHERE id == ?"
+            command = "SELECT id, vorname, nachname, geburtsdatum, spitzName FROM Mitglieder WHERE id == ?"
             self.execute_command_tuple(command, (id,))
             self.commit_changes()
             s = []
