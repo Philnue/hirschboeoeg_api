@@ -123,3 +123,14 @@ class BlMitglieder (BusinesssLogic):
         except Exception as e:
             print(str(e.args))
             return False
+    def _deleteShortname(self, mitglied_id ):
+        try: 
+            command = "UPDATE Mitglieder SET spitzName = null WHERE id == ?"
+            self.execute_command_tuple(command, (mitglied_id,))
+            self.commit_changes()
+           
+            return True
+
+        except Exception as e:
+            print(str(e.args))
+            return False
