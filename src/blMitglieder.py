@@ -72,15 +72,20 @@ class BlMitglieder (BusinesssLogic):
 
     def _addMitgliedWithoutGeburtstag(self, vorname, nachname):
         try: 
-            command = "INSERT INTO Mitglieder (vorname, nachname) VALUES (?,?)"
-            self.execute_command_tuple(command, (vorname,nachname))
-            self.commit_changes()
 
-            
             t = self._getMitgliederIdByName(vorname, nachname)
-            print(t)
-            return t
 
+            if len(t) == 1:
+                print(len(t))
+                return t
+            else:
+
+                command = "INSERT INTO Mitglieder (vorname, nachname) VALUES (?,?)"
+                self.execute_command_tuple(command, (vorname,nachname))
+                self.commit_changes()
+                t = self._getMitgliederIdByName(vorname, nachname)
+                return t
+            
         except Exception as e:
             print(str(e.args))
             return False
