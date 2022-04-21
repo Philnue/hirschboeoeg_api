@@ -44,6 +44,13 @@ async def addTerminAbstimmung(termin_id, mitglied_id, entscheidung):
 async def addTerminAbstimmung(termin_id):
     return con.load_all_termin_zusagen_by_terminid(termin_id)
 
+
+
+@api.get("/TerminAbstimmung/loadCounts/{termin_id}")
+async def addTerminAbstimmung(termin_id):
+    return con.loadCounts(termin_id)
+
+
 @api.get("/TerminAbstimmung/loadallterminabstimmung/")
 async def get_all_termin_abstimmung():
     values = con.getAllTerminAbstimmung()

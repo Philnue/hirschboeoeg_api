@@ -48,6 +48,31 @@ class BusinesssLogic():
             print("Database connection: Error getting item by id" + str(e))
             return False
 
+    def loadCounts(self, termin_id):
+        try:
+
+            command = "SELECT entscheidung, COUNT(*) as anzahl FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.mitglieder_id AND termin_id == ? GROUP BY entscheidung"
+
+            self.execute_command_tuple(command,(termin_id,))
+            s = []
+
+            for item in self.cur.fetchall():
+                d = {"entscheidung": item[0],"anzahl": item[1]}
+                s.append(d)
+
+
+            command2 = "SELECT count(*) FROM Mitglieder"
+
+            self.execute_command(command2)
+            for item in self.cur.fetchall():
+               
+                d = {"registrierteMitglieder": item[0]}
+                s.append(d)
+            return s
+        except Exception as e:
+            print("Database connection: Error getting item by id" + str(e))
+            return False
+
 
    
 
