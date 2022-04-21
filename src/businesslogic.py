@@ -34,7 +34,7 @@ class BusinesssLogic():
     def load_all_termin_zusagen_by_terminid(self, termin_id):
         try:
 
-            command = "SELECT Mitglieder.id, Mitglieder.vorname, Mitglieder.nachname, Mitglieder.spitzName FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.mitglieder_id AND TerminAbstimmung.termin_id == ?"
+            command = "SELECT Mitglieder.id, Mitglieder.vorname, Mitglieder.nachname, Mitglieder.spitzName FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.mitglieder_id AND TerminAbstimmung.termin_id == ? AND entscheidung == 1"
 
             self.execute_command_tuple(command,(termin_id,))
             s = []
