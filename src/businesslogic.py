@@ -84,7 +84,7 @@ class BusinesssLogic():
             s = []
 
             for item in self.cur.fetchall():
-                d = {"id": item[0],"vorname": item[1], "nachname" : item[2], "spitzName" : item[3], "entscheidung":[4]}
+                d = {"id": item[0],"vorname": item[1], "nachname" : item[2], "spitzName" : item[3], "entscheidung":item[4]}
                 s.append(d)
 
             return s
