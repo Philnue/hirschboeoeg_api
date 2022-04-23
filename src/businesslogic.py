@@ -48,6 +48,7 @@ class BusinesssLogic():
             print("Database connection: Error getting item by id" + str(e))
             return False
 
+   
     def loadCounts(self, termin_id):
         try:
 
@@ -74,7 +75,22 @@ class BusinesssLogic():
             return False
 
 
-   
+    def loadAllTerminAbstimmungenByTerminId(self, termin_id):
+        try:
+
+            command = "SELECT Mitglieder.id, Mitglieder.vorname, Mitglieder.nachname, Mitglieder.spitzName, TerminAbstimmung.entscheidung FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.mitglieder_id AND TerminAbstimmung.termin_id == ?"
+
+            self.execute_command_tuple(command,(termin_id,))
+            s = []
+
+            for item in self.cur.fetchall():
+                d = {"id": item[0],"vorname": item[1], "nachname" : item[2], "spitzName" : item[3], "entscheidung":[4]}
+                s.append(d)
+
+            return s
+        except Exception as e:
+            print("Database connection: Error getting item by id" + str(e))
+            return False
 
     def execute_command(self,command):
         self.cur.execute(command)

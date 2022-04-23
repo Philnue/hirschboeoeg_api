@@ -45,10 +45,13 @@ async def addTerminAbstimmung(termin_id):
     return con.load_all_termin_zusagen_by_terminid(termin_id)
 
 
-
 @api.get("/TerminAbstimmung/loadCounts/{termin_id}")
 async def addTerminAbstimmung(termin_id):
     return con.loadCounts(termin_id)
+
+@api.get("/TerminAbstimmung/loadAllTerminAbstimmungeListByTerminId/{termin_id}")
+async def addTerminAbstimmung(termin_id):
+    return con.loadAllTerminAbstimmungenByTerminId(termin_id)
 
 
 @api.get("/TerminAbstimmung/loadallterminabstimmung/")
