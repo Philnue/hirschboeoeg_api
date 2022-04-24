@@ -78,13 +78,13 @@ class BusinesssLogic():
     def loadAllTerminAbstimmungenByTerminId(self, termin_id):
         try:
 
-            command = "SELECT Mitglieder.id, Mitglieder.vorname, Mitglieder.nachname, Mitglieder.spitzName, TerminAbstimmung.entscheidung FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.mitglieder_id AND TerminAbstimmung.termin_id == ?"
+            command = "SELECT Mitglieder.id, Mitglieder.vorname, Mitglieder.nachname, Mitglieder.spitzName, TerminAbstimmung.entscheidung, TerminAbstimmung.termin_id FROM TerminAbstimmung, Mitglieder WHERE Mitglieder.id == TerminAbstimmung.mitglieder_id AND TerminAbstimmung.termin_id == ?"
 
             self.execute_command_tuple(command,(termin_id,))
             s = []
 
             for item in self.cur.fetchall():
-                d = {"id": item[0],"vorname": item[1], "nachname" : item[2], "spitzName" : item[3], "entscheidung":item[4]}
+                d = {"id": item[0],"vorname": item[1], "nachname" : item[2], "spitzName" : item[3], "entscheidung":item[4], "termin_id":item[5]}
                 s.append(d)
 
             return s
