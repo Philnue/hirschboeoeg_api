@@ -1,0 +1,20 @@
+[
+    {
+        "mitglied": {
+            "id": 1,
+            "vorname": "Philipp",
+            "nachname": "Nüßlein",
+            "spitzname": "Beta"
+        },
+        "termin": {
+            "id": 21,
+            "name": "testneu",
+            "zeitpunkt": "2022-04-15",
+            "adresse": "adresse",
+            "notizen": "keine notizen",
+            "kleidung.name": "Hääs ohne Maske",
+            "treffpunkt": "treff"
+        },
+        "entscheidung": 0
+    }
+]

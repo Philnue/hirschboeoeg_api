@@ -7,6 +7,7 @@ import businesslogic as dbConnection
 import blTermin as dbConnectionTermine
 import blMitglieder as dbConnectionMitglieder
 import blAbstimmung as dbAbstimmungen
+import newMitglieder as dbNewMitglieder
 import blAbstimmungsStimme as dbAbstimmungsStimme
 import json
 
@@ -19,11 +20,39 @@ conTermine = dbConnectionTermine.BlTermin()
 conMitglieder = dbConnectionMitglieder.BlMitglieder()
 conAbstimmungen = dbAbstimmungen.BlAbstimmung()
 conAbstimmungsStimme = dbAbstimmungsStimme.BlAbstimmungsStimme()
+conNewMitglieder = dbNewMitglieder.NewBlMitglieder()
 
 @api.get("/")
 async def root():
     return "Hey na du"
 
+@api.get("/new/addMitglied/")
+async def get_all_items():
+    #values = conNewMitglieder._addMitgliedWithoutGeburtstag("philipp","testNeuNeu")
+    return values
+
+@api.get("/new/addTermin/")
+async def get_all_items():
+    #values = conTermine.createTermin("testneu", "2022-04-15", "adresse", 1, "treff", "keine notizen")
+    return values
+
+@api.get("/new/loadTerminEntscheidung/")
+async def get_all_items():
+    #!testen
+    values = con.loadTerminAbstimmungNewAll()
+    return values
+
+@api.get("/new/loadTerminEntscheidungAfterTerminId/{id}")
+async def get_all_items(id):
+    #!testen
+    values = con.loadTerminAbstimmungNewByTerminid(id)
+    return values
+
+@api.get("/new/loadTerminEntscheidungAfterMId/{id}")
+async def get_all_items(id):
+    #!testen
+    values = con.loadTerminAbstimmungNewByMId(id)
+    return values
 
 @api.get("/Termine/loadalltermine/")
 async def get_all_items():
@@ -34,6 +63,8 @@ async def get_all_items():
 @api.get("/Termine/loadTerminById/{termin_id}")
 async def get_all_items(termin_id):
     return conTermine.getTerminById(termin_id)
+
+
     
 #Update einbauen dass man sieht wer zu und absagt
 @api.get("/TerminAbstimmung/addTerminAbstimmung/{termin_id},{mitglied_id},{entscheidung}")
@@ -82,17 +113,32 @@ async def get_all_termin_abstimmung(mitgliedId,terminId, entscheidung):
 
 #Mitglieder
 
+#rein
+#@api.get("/Mitglieder/getMitgliedById/{vorname},{nachname}")
+#async def create_item(vorname, nachname):
+#    return conMitglieder._getMitgliederIdByName(vorname, nachname)
+#rein
+#@api.get("/Mitglieder/getFullMitgliedByName/{vorname},{nachname}")
+#async def create_item(vorname, nachname):
+#    return conMitglieder._getFullMitgliedIdByName(vorname, nachname)
+
 @api.get("/Mitglieder/getMitgliedById/{vorname},{nachname}")
 async def create_item(vorname, nachname):
-    return conMitglieder._getMitgliederIdByName(vorname, nachname)
+    return conNewMitglieder._getMitgliederIdByName(vorname, nachname)
 
 @api.get("/Mitglieder/getFullMitgliedByName/{vorname},{nachname}")
 async def create_item(vorname, nachname):
-    return conMitglieder._getFullMitgliedIdByName(vorname, nachname)
+    return conNewMitglieder._getFullMitgliedIdByName(vorname, nachname)
+
+
+#wieder rein
+#@api.get("/Mitglieder/getFullMitgliedById/{id}")
+#async def create_item(id):
+#    return conMitglieder._getMitgliedById(id)
 
 @api.get("/Mitglieder/getFullMitgliedById/{id}")
 async def create_item(id):
-    return conMitglieder._getMitgliedById(id)
+    return conNewMitglieder._getMitgliedById(id)
 
 @api.get("/Mitglieder/addMitglied/{vorname},{nachname}")
 async def create_itemT(vorname, nachname):
@@ -139,9 +185,9 @@ async def get_all_abstimmungen(id):
     return conAbstimmungen._loadSummary(id)
 
 
-@api.get("/Abstimmung/addAbstimmung/{mitglied_id}/{frage}/{title}/{ablaufDatum}")
-async def get_all_abstimmungen( mitglied_id, frage,title,ablaufDatum):
-    return conAbstimmungen._addTerminAbstimmung(mitglied_id, frage, title,ablaufDatum)
+@api.get("/Abstimmung/addAbstimmung/{mitglied_id}/{frage}/{title}/{isAnonyn}")
+async def get_all_abstimmungen( mitglied_id, frage,title, isAnonyn):
+    return conAbstimmungen._addAbstimmung(mitglied_id, frage, title,isAnonyn)
 
 #AbstimmungsStimme
 

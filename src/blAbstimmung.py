@@ -11,18 +11,20 @@ class BlAbstimmung (BusinesssLogic):
 
     def _getAllAbstimmungen(self):
         try:
-            #command = "SELECT id, mitglied_id, erstellungsDatum, erstellungsUhrzeit, frage FROM Abstimmung"
-
-            #command = "SELECT * FROM Abstimmung"
-            command = "SELECT Abstimmung.id, Abstimmung.mitglied_id,vorname, nachname, geburtsdatum, erstellungsDatum, erstellungsUhrzeit, frage, titel, ablaufDatum FROM Abstimmung, Mitglieder WHERE Mitglieder.id == Abstimmung.mitglied_id ORDER BY erstellungsDatum"
+          
+            command = "SELECT Abstimmung.id, Mitglieder.id,vorname, nachname, spitzname, erstellungszeitpunkt, frage, titel, isAnonym FROM Abstimmung, Mitglieder WHERE mitglieder.id == ersteller_id ORDER BY erstellungszeitpunkt"
+            print(command)
             self.execute_command(command)
+            
             
             s = []
 
             for item in self.cur.fetchall():
                
-                #d = {"id": item[0], "mitglied_id" : item[1], "erstellungsDatum" : item[2],"erstellungsUhrzeit" : item[3],"frage" : item[4] }
-                d = {"Abstimmung.id": item[0], "mitglied_id" : item[1], "vorname" : item[2],"nachname" : item[3],"geburtsdatum" : item[4], "erstellungsDatum" : item[5], "erstellungsUhrzeit" : item[6], "frage" : item[7] , "titel" : item[8], "ablaufDatum" : item[9]}
+                mitgliedList = {"id":item[1],"vorname":item[2],"nachname":item[3],"spitzname":item[4]}
+                abstimmungsList = {"id":item[0],"erstellungszeitpunkt":item[5],"frage":item[6],"titel":item[7], "isAnonym":item[8]}
+
+                d = {"mitglied":mitgliedList, "abstimmung":abstimmungsList}
                 s.append(d)
 
             return s
@@ -32,7 +34,7 @@ class BlAbstimmung (BusinesssLogic):
 
     def _deleteAbstimmungById(self, id):
         try:
-            command = "DELETE FROM Abstimmung WHERE id == ?"
+            command = "DELETE FROM abstimmung WHERE id == ?"
             self.execute_command_tuple(command, (id,))
             self.commit_changes()
 
@@ -42,14 +44,18 @@ class BlAbstimmung (BusinesssLogic):
             print("Error getting all Abstimmungen: " + str(d.args))
             return False
 
-    def _addTerminAbstimmung(self, mitglied_id, frage, title, ablaufDatum):
+    def _addAbstimmung(self, mitglied_id, frage, title, isAnonym):
         try:
 
-            print(mitglied_id)
-            print(title)
-            print(frage)
-            command = "INSERT INTO Abstimmung (mitglied_id, erstellungsDatum, erstellungsUhrzeit,frage, titel, ablaufDatum) VALUES (?, DATE('now'), TIME('now'), ?, ?, ?)"
-            self.execute_command_tuple(command, (mitglied_id,frage, title, ablaufDatum))
+            command = "INSERT INTO Abstimmung (ersteller_id, frage, titel,erstellungszeitpunkt, isAnonym) VALUES (?, ?, ?, DATETIME('now'),?)"
+
+            commandCreateAllTA = "INSERT INTO abstimmungsstimme (abstimmung_id, entscheidung, mitglieder_id) SELECT (SELECT max(id) FROM abstimmung), 0, M.id FROM mitglieder AS M"
+
+
+            self.execute_command_tuple(command, (mitglied_id,frage, title))
+            self.commit_changes()
+
+            self.execute_command(commandCreateAllTA)
             self.commit_changes()
 
             return True
@@ -58,11 +64,13 @@ class BlAbstimmung (BusinesssLogic):
             print("Error getting all Abstimmungen: " + str(d.args))
             return False
 
+    
+
     def _loadSummary(self, abstimmung_id):
         try:
             #SELECT count(entscheidung), entscheidung FROM AbstimmungStimme, Abstimmung WHERE Abstimmung.id == AbstimmungStimme.abstimmungs_id GROUP BY entscheidung
          
-            command = "SELECT count(entscheidung) as anzahl, entscheidung FROM AbstimmungStimme WHERE abstimmungs_id == ? GROUP BY entscheidung"
+            command = "SELECT count(entscheidung) as anzahl, entscheidung FROM AbstimmungStimme WHERE abstimmung_id == ? GROUP BY entscheidung"
  
             self.execute_command_tuple(command, (abstimmung_id,))
             

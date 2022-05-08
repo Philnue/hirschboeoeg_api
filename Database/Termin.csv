@@ -1,0 +1,8 @@
+id,name,datum,adresse,uhrzeit,notizen,kleidung_id,treffpunkt
+14,1. Mai Feiertag,2022-05-01,Sparkasse Grenzach,11:00,"Herten Zug: 10:56 Uhr Wyhlen Zug: 10:11 Uhr, Schwarzwaldverein - Dängeligeister - Rührberg Musikverein - Hasenverein - Deufel",2,11:00 Sparkasse Grenzach
+15,11.11 Auftritt,2022-11-11,HDB,n.A.,,3,n.A.
+16,Cliquen Sitzung,2022-06-27,DängeleGeister Schloss,20:00,,3,20:00 oben
+17,Cliquen Sitzung 11.11,2022-10-10,DängeleGeister Schloss,20:00,"Besprechung 11.11, bitte Vorschläge vorher einreichen",3,20:00 oben
+18,HP 60. Geb,2022-08-27,n.A.,n.A.,Einladung folgt,3,n.A.
+19,NotiTest,2022-04-11,test,12:55,kein,1,test
+20,NotiTest,2022-04-22,n.A.,18:00,keine,2,test
