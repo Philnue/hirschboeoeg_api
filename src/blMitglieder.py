@@ -92,13 +92,13 @@ class BlMitglieder (BusinesssLogic):
 
     def _getMitgliedById(self, id):
         try: 
-            command = "SELECT id, vorname, nachname, geburtsdatum, spitzname FROM Mitglieder WHERE id == ?"
+            command = "SELECT id, vorname, nachname, spitzname FROM Mitglieder WHERE id == ?"
             self.execute_command_tuple(command, (id,))
             self.commit_changes()
             s = []
 
             for item in self.cur.fetchall():
-                d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"geburtsdatum" : item[3],"spitzname":item[4] }
+                d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"spitzname":item[3] }
                 s.append(d)
             return s
 
