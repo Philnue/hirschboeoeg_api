@@ -42,7 +42,7 @@ class BlAbstimmungsStimme (BusinesssLogic):
     def _loadAbstimmungsStimme(self, abstimmung_id):
 
         try:
-            command = "SELECT abstimmung.id,abstimmung.frage,abstimmung.titel,abstimmung.erstellungszeitpunkt,abstimmung.isAnonym,abstimmung.ersteller_id,mitglieder.id,mitglieder.vorname,mitglieder.nachname,mitglieder.spitzname,entscheidung,FROM abstimmungsstimme LEFT JOIN abstimmung ON abstimmung.id==abstimmungsstimme.abstimmung_id LEFT JOIN mitglieder ON mitglieder.id==abstimmungsstimme.mitglieder_id WHERE abstimmung_id==?"
+            command = "SELECT abstimmung.id,abstimmung.frage,abstimmung.titel,abstimmung.erstellungszeitpunkt,abstimmung.isAnonym,abstimmung.ersteller_id,mitglieder.id,mitglieder.vorname,mitglieder.nachname,mitglieder.spitzname,entscheidung FROM abstimmungsstimme LEFT JOIN abstimmung ON abstimmung.id==abstimmungsstimme.abstimmung_id LEFT JOIN mitglieder ON mitglieder.id==abstimmungsstimme.mitglieder_id WHERE abstimmung_id==?"
             print(command)
             self.execute_command_tuple(command, (abstimmung_id,))
             
