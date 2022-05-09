@@ -8,8 +8,7 @@ from datetime import date, datetime
 
 
 class BlAbstimmungsStimme (BusinesssLogic):
-    pass
-
+        
     def _addAbstimmungsStimme(self,mitglied_id, abstimmungs_id, entscheidung):
         
         try:
@@ -23,16 +22,17 @@ class BlAbstimmungsStimme (BusinesssLogic):
             print("Error adding abstimmungsstimme: " + str(d.args))
             return False
 
-    def _addAbstimmungsStimme(self,mitglied_id, abstimmungs_id, entscheidung):
+    def _setAbstimmungsStimme(self,mitglieder_id, abstimmung_id, entscheidung):
         
         try:
-            command = "INSERT INTO AbstimmungStimme (mitglied_id, stimmenDatum, stimmenUhrzeit,abstimmung_id, entscheidung) VALUES (?, DATE('now'), TIME('now'), ?, ?)"
-            self.execute_command_tuple(command, (mitglied_id,abstimmungs_id, entscheidung))
+            command = "UPDATE abstimmungsstimme SET entscheidung = ? WHERE mitglieder_id == ? AND abstimmung_id == ?"
+            print(command)
+            self.execute_command_tuple(command, (entscheidung,mitglieder_id, abstimmung_id))
             self.commit_changes()
 
             return True
 
         except Exception as d:
-            print("Error adding abstimmungsstimme: " + str(d.args))
+            print("Error update abstimmungsstimme: " + str(d.args))
             return False
 

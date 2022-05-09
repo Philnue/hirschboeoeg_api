@@ -191,9 +191,9 @@ async def get_all_abstimmungen( mitglied_id, frage,title, isAnonyn):
 
 #AbstimmungsStimme
 
-@api.get("/AbstimmungsStimme/addAbstimmungsStimme/{mitglied_id},{abstimmungs_id},{entscheidung}")
+@api.get("/AbstimmungsStimme/setabstimmungsstime/{mitglied_id},{abstimmungs_id},{entscheidung}")
 async def get_all_abstimmungen(mitglied_id, abstimmungs_id, entscheidung):
-    return conAbstimmungsStimme._addAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
+    return conAbstimmungsStimme._setAbstimmungsStimme(mitglied_id, abstimmungs_id, entscheidung)
 
 
 #lizenz
