@@ -57,7 +57,7 @@ class BlAbstimmungsStimme (BusinesssLogic):
                 t = {"abstimmung" :abstimmung, "mitglied": mitglied,"ersteller": ersteller, "entscheidung": item[10]}
                 list.append(t)
 
-            return True
+            return list
 
         except Exception as d:
             print("Error update abstimmungsstimme: " + str(d.args))
