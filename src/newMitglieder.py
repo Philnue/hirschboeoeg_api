@@ -104,7 +104,7 @@ class NewBlMitglieder (BusinesssLogic):
             for item in self.cur.fetchall():
                 d = {"id": item[0], "vorname" : item[1], "nachname" : item[2],"spitzname":item[3] }
                 s.append(d)
-            return s
+            return s[0]
 
         except Exception as e:
             print(str(e.args))
