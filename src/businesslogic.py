@@ -23,10 +23,10 @@ class BusinesssLogic():
     def add_termin_abstimmung(self, termin_id, mitglied_id, entscheidung):
         try:
             command = "INSERT INTO TerminAbstimmung (termin_id, entscheidung, mitglieder_id) VALUES (?,?,?)"
-            print(command)
+            
             self.execute_command_tuple(command, (termin_id,entscheidung, mitglied_id))
             self.commit_changes()
-            print("Added Termin abstimmung: {termin_id} {entscheidung} {mitglied_id}")
+            
             return True
         except Exception as e:
             print("Database connection: Error getting item by id" + str(e))
@@ -128,7 +128,7 @@ class BusinesssLogic():
         try:
             command = "DELETE FROM TerminAbstimmung WHERE termin_id == ? AND mitglieder_id == ?"
             self.execute_command_tuple(command, (terminId, mitgliedId))
-            print(command)
+            
             self.commit_changes()
 
            
@@ -207,7 +207,7 @@ class BusinesssLogic():
             calcDate = str(datetime.today())[0:10]
             command = f"SELECT Termin.id AS termin_id,Termin.name ,termin.zeitpunkt,termin.adresse,termin.notizen,termin.kleidung_id,termin.treffpunkt,mitglieder.id AS mitglieder_id, mitglieder.vorname,mitglieder.nachname,Mitglieder.spitzname,entscheidung,kleidung.name,kleidung.id FROM TerminAbstimmung JOIN Termin ON Termin.id==TerminAbstimmung.termin_id JOIN Mitglieder ON Mitglieder.id==TerminAbstimmung.mitglieder_id JOIN kleidung ON kleidung.id==kleidung_id WHERE mitglieder_id==? AND termin.zeitpunkt >='{calcDate}' ORDER BY zeitpunkt"
             self.execute_command_tuple(command,(id,))
-            print(command)
+            
             #! hier
             
             list = []
