@@ -159,7 +159,7 @@ class BusinesssLogic():
     def updateTerminAbstimmungByMitgliedIdAndTerminId(self, mitgliedId, terminId, entscheidung):
 
         try:
-            command = "UPDATE TerminAbstimmung SET entscheidung = ? WHERE termin_id == ? AND mitglieder_id == ?"
+            command = "UPDATE terminabstimmung SET entscheidung = ? WHERE termin_id == ? AND mitglieder_id == ?"
             self.execute_command_tuple(command, (entscheidung, terminId, mitgliedId))
             self.commit_changes()
 
